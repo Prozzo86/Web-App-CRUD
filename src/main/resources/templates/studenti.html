@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Baza studenata</title>
+  <link rel ="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container-fluid text-center">
+  <div><h2>Baza studenata</h2></div>
+  <div class="m-2">
+    <a class="h3" th:href="@{/studenti/novi}">Dodaj studenta</a>
+  </div>
+
+  <div th:if="${poruka}" class="alert alert-success text-center">
+  [[${poruka}]]
+  </div>
+
+  <div>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+         <tr>
+           <th>ID</th>
+           <th>Ime</th>
+           <th>Prezime</th>
+           <th>E-mail</th>
+           <th>Datum</th>
+           <th></th>
+         </tr>
+      </thead>
+      <tbody>
+
+      <th:block th:each = "student : ${listStudenti}">
+        <tr>
+          <td>[[${student.id}]]</td>
+          <td>[[${student.ime}]]</td>
+          <td>[[${student.prezime}]]</td>
+          <td>[[${student.email}]]</td>
+          <td>[[${student.datum}]]</td>
+          <td>
+            <a class="h4 mr-3" th:href="@{'/studenti/uredi/' + ${student.id}}">Uredi</a>
+            <a class="h4" th:href="@{'/studenti/delete/' + ${student.id}}">Obriši</a>
+          </td>
+        </tr>
+      </th:block>
+
+
+      </tbody>
+
+
+      </table>
+
+    </div>
+    </div>
+  </body>
+</html>
